@@ -38,7 +38,7 @@ slicing_request2 = "1:10:2,11:20,78,90"   -- has four terms "1:10:2", "11:20", "
 Each term is a string represents a list of keys or indexes in numbers. 
 
 ### Index Slicing (for list-like container)
-The general version of a term is "a:\b:c" where a is the starting index, b is the ending index, c is the step. The defualt value (when term is "\:b\:c") is 0, default for b is the length of the container, default value for c is 1.
+The general version of a term is "a1:a2:a3" where a1 is the starting index, b is the ending index, c is the step. The defualt value (when term is "\:b\:c") is 0, default for b is the length of the container, default value for c is 1.
 
 Like in python, value of b can be negative, in this case it means how many elements you want to dissmiss at the end of the container.
 
