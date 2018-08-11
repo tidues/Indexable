@@ -73,7 +73,11 @@ class (Foldable f, Typeable b, Eq b, Read b) => Indexable f b | f -> b where
         | length slice == 0 = (xs, [])   -- ## "base bwSlice case 1: "
         | s:ls <- slice = (xs&[s], ls)   -- ## "base bwSlice case 2: "
 
-
+    -- change precedence
+    infixl 9 &
+    infixl 9 &!
+    infixl 9 &?
+    
     -- normal slicing
     -- (&) :: (Show (f a), Show a) => f a -> [String] -> f a
     (&) :: f a -> [String] -> f a
