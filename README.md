@@ -16,7 +16,7 @@ lst&["1:-1:2"]      -- select elements in range with step size 2
 lst&["1:3,4:6,8"]   -- elements 1:3, 4:6 and the 8th.
 
 ```
-the output in ghci is:
+the outputs in ghci are:
 
 ```haskell ghci
 [0,1,2,3,4,5,6,7,8,9,10]
@@ -68,14 +68,14 @@ import Data.Functor.Compose             -- import the compose functor
 mlst = [(i,[i..i+3]) | i<-[0..3]]       -- an list of tuples with first value as key
                                         -- second as a list of numbers.
 
-mmap = fromList mlst                    -- construct map of list with type (Map Integer [Integer])
+mmap = fromList mlst                    -- construct map of lists, the type is (Map Integer [Integer])
 
 cmap = Compose mmap                     -- lift nested container to composed type
                                         -- so we can use slicing operator (&) on it
 ```
 
 ### Apply Slicing on Composed Containers
-We can slice on nested container with a list of slicing request, with the ith request perform on the ith dimension. Continue on the above example:
+We can slice on any nested container with a list of slicing requests, with the ith request perform on the ith dimension. Continues on the example above:
 
 ```haskell ghci
 
@@ -95,7 +95,7 @@ Compose (fromList [(1,[2,3]),(2,[3,4])])
 Compose (fromList [(0,[0,1,2,3]),(2,[2,3,4,5])])
 ```
 
-For higher level nested containers, we need to first construct composed type with corresponding level. For example, the map of list of vector, say `mlv`, needs to composed twice, `cmlv = Compose $ Compose mlv` before applying `(&)` operator.
+For higher level nested containers, we need to first construct composed type with the corresponding level. For example, the map of lists of vectors, say `mlv`, needs to be composed twice, `cmlv = Compose $ Compose mlv` before applying `(&)` operator.
 
 # Current Instances of Indexable
 
@@ -110,14 +110,14 @@ and all finite nested combination of above containers.
 
 # Create New Instances
 
-To add new containers `f` with key `b` as indexable, two minimal functions need to provide:
+To add new containers `f` with key `b` as indexable, two minimal functions need to be provided:
 
-1. `(&?) :: f a -> b -> Maybe a` : a function safely return the element of type `a` by key of tyep `b`.
-1. `fromLst :: (Typeable b) => [(b,a)] -> f a` : a function that construct container `f` from a list of key value pair tuples. (list-like containers should forget the keys in this function). 
+1. `(&?) :: f a -> b -> Maybe a` : a function safely return the element of type `a` by a key of tyep `b`.
+1. `fromLst :: (Typeable b) => [(b,a)] -> f a` : a function that construct container `f` of value `a` from a list of key value pairs. (list-like containers should forget the keys in this function). 
 
 After appling these two function, new container can be nested with other containers and using slicing operator `(&)`.
 
-# Other Operators for Indexable
+# Other Operators Available in Indexable
 
 1. `(&?)` safe lookup
 1. `(&!)` unsafe lookup
