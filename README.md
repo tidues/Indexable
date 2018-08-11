@@ -125,4 +125,4 @@ After appling these two function, new container can be nested with other contain
 
 # How to Install
 
-This package is currently in the candidate package pool of Hackage. You can download from there, or simply clone this git.
+For now, you can only download from here.
